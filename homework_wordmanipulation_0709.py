@@ -19,18 +19,19 @@ class CounterOfStrings:
 
     def countDistinctString(self):
         self.wordCount = {}
-
-        for word in self.newString:
+        # calling a function within a function inside a class requires 'self.'
+        for word in (self.createArrayOfString()):
             if (word not in self.wordCount):  # append only if unique
                 self.wordCount[word] = self.newString.count(word)
-
-        return sorted(self.wordCount.items())
+        wordCount = dict(sorted(self.wordCount.items()))
+        return wordCount
 
     def mostFreqWord(self):
         mostFreqWords = []
-        maxCount = max(self.wordCount.values())
-        for key, value in self.wordCount.items():
-            if (value == maxCount):
+        callDict = self.countDistinctString()
+        maxCount = max(callDict, key=callDict.get)
+        for key, value in callDict.items():
+            if (value == callDict[maxCount]):
                 mostFreqWords.append(key)
         return mostFreqWords
 
@@ -39,6 +40,6 @@ newInput = input("Enter a sentence: \n").strip(" ")  # enter a string
 strInput = newInput.lower()  # lowercase all letters
 # I want to be able to call each function even without calling them by order
 displayInput = CounterOfStrings(strInput)
-print(displayInput.createArrayOfString())
-print(displayInput.countDistinctString())
+# print(displayInput.createArrayOfString()) #just a trial (my goal is to be able to use each function without depending on the others)
+# print(displayInput.countDistinctString())
 print(displayInput.mostFreqWord())

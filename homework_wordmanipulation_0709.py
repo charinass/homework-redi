@@ -29,7 +29,7 @@ class CounterOfStrings:
     def mostFreqWord(self):
         mostFreqWords = []
         maxCount = max(self.wordCount.values())
-        for key, value in self.wordCount.items():  # print max when maxCount is satisfied
+        for key, value in self.wordCount.items():
             if (value == maxCount):
                 mostFreqWords.append(key)
         return mostFreqWords
@@ -37,6 +37,7 @@ class CounterOfStrings:
 
 newInput = input("Enter a sentence: \n").strip(" ")  # enter a string
 strInput = newInput.lower()  # lowercase all letters
+# I want to be able to call each function even without calling them by order
 displayInput = CounterOfStrings(strInput)
 print(displayInput.createArrayOfString())
 print(displayInput.countDistinctString())

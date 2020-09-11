@@ -4,41 +4,39 @@
 # so that when it's called from another file
 # it should not add additional processes but only as the function requires
 # it is best to separate each function and call it from the main where the entire functions are required
-
-def main():
-    newInput = input("Enter a sentence: \n").strip(" ")  # enter a string
-    strInput = newInput.lower()  # lowercase all letters
-    newString = createArrayOfString(strInput)
-    wordCount = countDistinctString(newString)
-    mostFreqWord(wordCount)
+# 2. edit to create into a class
 
 
-def createArrayOfString(strInput):  # split each word into a list
-    newString = strInput.split(sep=" ")
-    print(newString, '\n')
-    return newString
+class CounterOfStrings:
+
+    def __init__(self, strInput):
+        self.strInput = strInput
+
+    def createArrayOfString(self):  # split each word into a list
+        self.newString = self.strInput.split(sep=" ")
+        return self.newString
+
+    def countDistinctString(self):
+        self.wordCount = {}
+
+        for word in self.newString:
+            if (word not in self.wordCount):  # append only if unique
+                self.wordCount[word] = self.newString.count(word)
+
+        return sorted(self.wordCount.items())
+
+    def mostFreqWord(self):
+        mostFreqWords = []
+        maxCount = max(self.wordCount.values())
+        for key, value in self.wordCount.items():  # print max when maxCount is satisfied
+            if (value == maxCount):
+                mostFreqWords.append(key)
+        return mostFreqWords
 
 
-def countDistinctString(newString):
-    wordCount = {}
-    uniqueWord = []
-    for word in newString:
-        if (word not in uniqueWord):  # append only if unique
-            uniqueWord.append(word)
-
-    uniqueWord.sort()  # to alphabetically sort the words
-    for i in uniqueWord:
-        print(i, ":", newString.count(i))
-        wordCount[i] = newString.count(i)  # store in dictionary
-    return wordCount
-
-
-def mostFreqWord(wordCount):
-    maxCount = max(wordCount.values())
-    for key, value in wordCount.items():  # print max when maxCount is satisfied
-        if (value == maxCount):
-            print(key)
-
-
-if __name__ == "__main__":
-    main()
+newInput = input("Enter a sentence: \n").strip(" ")  # enter a string
+strInput = newInput.lower()  # lowercase all letters
+displayInput = CounterOfStrings(strInput)
+print(displayInput.createArrayOfString())
+print(displayInput.countDistinctString())
+print(displayInput.mostFreqWord())

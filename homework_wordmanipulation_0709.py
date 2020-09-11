@@ -6,7 +6,7 @@
 # it is best to separate each function and call it from the main where the entire functions are required
 # 2. edit to create into a class
 # please contribute if you want, the goal is to be able to use best principles for flexibility
-# naming convention needs improvement on this homework
+# naming convention needs improvement on this homework: classes should be a noun i.e. WordCounter, methods should start with a verb i.e. createAccount
 
 
 class CounterOfStrings:

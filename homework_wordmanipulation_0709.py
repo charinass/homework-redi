@@ -6,6 +6,7 @@
 # it is best to separate each function and call it from the main where the entire functions are required
 # 2. edit to create into a class
 # please contribute if you want, the goal is to be able to use best principles for flexibility
+# naming convention needs improvement on this homework
 
 
 class CounterOfStrings:
@@ -41,6 +42,6 @@ strInput = input("Enter a sentence: \n").strip(" ")  # enter a string
 displayInput = CounterOfStrings(strInput)
 # putting comment on each function for trial & error if it works independently
 # (my goal is to be able to use each function without depending on the others)
+print(displayInput.countDistinctString())  # display dict of words
 print(displayInput.createArrayOfString())  # display str as list
-# print(displayInput.countDistinctString()) # display dict of words
 print(displayInput.mostFreqWord())  # display most frequent word

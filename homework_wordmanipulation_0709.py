@@ -5,6 +5,7 @@
 # it should not add additional processes but only as the function requires
 # it is best to separate each function and call it from the main where the entire functions are required
 # 2. edit to create into a class
+# please contribute if you want, I want to make this better
 
 
 class CounterOfStrings:

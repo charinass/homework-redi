@@ -1,15 +1,22 @@
 # Manipulating words
+# edited for best practices
+# make sure that every function only works as that,
+# so that when it's called from another file
+# it should not add additional processes but only as the function requires
+# it is best to separate each function and call it from the main where the entire functions are required
+
 def main():
-    newInput = input("Enter a sentence: \n")  # enter a string
-    if (newInput.count(' ') > 0):
-        strInput = newInput.lower()  # lowercase all letters
-        createArrayOfString(strInput)
+    newInput = input("Enter a sentence: \n").strip(" ")  # enter a string
+    strInput = newInput.lower()  # lowercase all letters
+    newString = createArrayOfString(strInput)
+    wordCount = countDistinctString(newString)
+    mostFreqWord(wordCount)
 
 
 def createArrayOfString(strInput):  # split each word into a list
     newString = strInput.split(sep=" ")
     print(newString, '\n')
-    countDistinctString(newString)
+    return newString
 
 
 def countDistinctString(newString):
@@ -23,8 +30,7 @@ def countDistinctString(newString):
     for i in uniqueWord:
         print(i, ":", newString.count(i))
         wordCount[i] = newString.count(i)  # store in dictionary
-
-    mostFreqWord(wordCount)
+    return wordCount
 
 
 def mostFreqWord(wordCount):

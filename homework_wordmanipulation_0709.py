@@ -11,7 +11,7 @@
 class CounterOfStrings:
 
     def __init__(self, strInput):
-        self.strInput = strInput
+        self.strInput = strInput.lower()
 
     def createArrayOfString(self):  # split each word into a list
         self.newString = self.strInput.split(sep=" ")
@@ -36,8 +36,7 @@ class CounterOfStrings:
         return mostFreqWords
 
 
-newInput = input("Enter a sentence: \n").strip(" ")  # enter a string
-strInput = newInput.lower()  # lowercase all letters
+strInput = input("Enter a sentence: \n").strip(" ")  # enter a string
 # I want to be able to call each function even without calling them by order
 displayInput = CounterOfStrings(strInput)
 # putting comment on each function for trial & error if it works independently

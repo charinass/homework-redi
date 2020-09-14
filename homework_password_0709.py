@@ -31,6 +31,7 @@ def main():
             print(MSG_ERROR)
 
 
+# I should separate each of these in methods because this currently is not a good proctice!!!
 def checkStringValidity(userPass):
     if ((isinstance(userPass, str) == True) and (len(userPass) >= MINCHAR) and (userPass.count(' ') == 0) and (len(re.findall(r'[A-Z]', userPass)) >= MINLETTER) and (len(re.findall(r'[0-9]', userPass)) >= MINDIGS)) and (re.search(DIGIT_PATTERN, userPass) == None):
         return True

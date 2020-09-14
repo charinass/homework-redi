@@ -10,7 +10,8 @@ MINDIGS = 2  # minimum number of digits
 DIGIT_PATTERN = r'\d\d'  # consecutive digits pattern
 MSG_ERROR = fg.red+"Invalid password. Try again."+fg.rs  # error messages
 MSG_ERROR_NUM_INV = fg.red + \
-    "Numbers should not be next to each other. Please enter a stronger password."+fg.rs
+    "Numbers should not be next to each other. Please enter a stronger password." + \
+    fg.rs  # I got lazy
 MSG_SUCCESS = fg.green+"You saved a new password."+fg.rs
 
 

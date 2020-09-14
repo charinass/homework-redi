@@ -10,6 +10,6 @@ for i in range(len(arr) - 1):
         arrTmp = []
 
 arrTmp.append(arr[len(arr)-1])
-arrResult.append(arrTmp)
+arrResult.append(arrTmp)  # last element
 
 print(arrResult)

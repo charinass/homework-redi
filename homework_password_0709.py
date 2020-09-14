@@ -15,27 +15,28 @@ MSG_SUCCESS = fg.green+"You saved a new password."+fg.rs
 
 
 def main():
-
-    print(
-        "Enter a password minimum of {} characters \n- with at least {} upper-case letter \n- at least {} digits \n- two consecutive digits is not allowed.".format(MINCHAR, MINLETTER, MINDIGS))
-    # userPass = stdiomask.getpass("Input password:") # for hidden password
-    userPass = input("Input password:")
-    checkStringValidity(userPass)
+    while True:
+        try:
+            print(
+                f"Enter a password minimum of {MINCHAR} characters \n- with at least {MINLETTER} upper-case letter \n- at least {MINDIGS} digits \n- two consecutive digits is not allowed.")
+            # userPass = stdiomask.getpass("Input password:") # for hidden password
+            userPass = input("Input password:")
+            if (checkStringValidity(userPass) == True):
+                print(MSG_SUCCESS)
+                break
+            else:
+                raise InputError
+        except InputError:
+            print(MSG_ERROR)
 
 
 def checkStringValidity(userPass):
-    if ((isinstance(userPass, str) == True) and (len(userPass) >= MINCHAR) and (userPass.count(' ') == 0) and (len(re.findall(r'[A-Z]', userPass)) >= MINLETTER) and (len(re.findall(r'[0-9]', userPass)) >= MINDIGS)):
-        charDigitSearch(userPass)
-        print(MSG_SUCCESS)  # save password
-    else:
-        print(MSG_ERROR)
-        main()
+    if ((isinstance(userPass, str) == True) and (len(userPass) >= MINCHAR) and (userPass.count(' ') == 0) and (len(re.findall(r'[A-Z]', userPass)) >= MINLETTER) and (len(re.findall(r'[0-9]', userPass)) >= MINDIGS)) and (re.search(DIGIT_PATTERN, userPass) == None):
+        return True
 
 
-def charDigitSearch(userPass):  # checks whether numbers are next to each other
-    if (re.search(DIGIT_PATTERN, userPass) != None):
-        print(MSG_ERROR_NUM_INV)
-        main()
+class InputError(Exception):
+    pass
 
 
 if __name__ == "__main__":

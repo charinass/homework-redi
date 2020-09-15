@@ -42,4 +42,4 @@ class InputError(Exception):
 
 
 if __name__ == "__main__":
-    main()
+    main()  # every recursive function should have a stop condition

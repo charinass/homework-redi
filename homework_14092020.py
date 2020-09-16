@@ -23,7 +23,7 @@ def read_a_file(file_name):  # counts number of a character in an entire txt fil
             read_file = file.read()
             char_count = {}
             for i in read_file.lower():
-                if(i.isalnum() == True):
+                if(i.isalpha() == True):
                     char_count[i] = char_count.get(i, 0) + 1
         char_count = dict(sorted(char_count.items()))
         char_count = sorter(char_count)
@@ -42,7 +42,7 @@ def read_by_line(num_of_lines: int, file_name):
             for i in read_file:
                 per_line = i.lower()
                 for x in per_line:
-                    if(x.isalnum() == True):
+                    if(x.isalpha() == True):
                         if [x, per_line.count(x)] not in return_list:
                             return_list.append([x, per_line.count(x)])
         return_list = dict(return_list)

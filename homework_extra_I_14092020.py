@@ -1,6 +1,14 @@
+# Ctrl+Alt+Click go to definition
 input_file = 'input.txt'
 output_file = 'output.txt'
-KEY = 3
+KEY = "love is complex"
+
+
+def key_gen(KEY):
+    hash = 0
+    for a in KEY:
+        hash ^= ord(a)
+    return hash
 
 
 def encrypt_file():
@@ -24,5 +32,6 @@ def unencrypt_file():
 
 
 if __name__ == "__main__":
+    KEY = key_gen(KEY)
     encrypt_file()
     unencrypt_file()

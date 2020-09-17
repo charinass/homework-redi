@@ -8,7 +8,7 @@ def write_new_file(str_input, file_name):  # inputs str to be written into a fil
 def write_output_file(read_file, file_name):
     file_name = file_name.replace('.txt', '_output.txt')
     with open(file_name, 'w') as file:
-        print(read_file, file=file)
+        print(read_file, file=file)  # safe print to file
 
 
 def sorter(some_dict: dict):

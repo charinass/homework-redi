@@ -18,9 +18,7 @@ def unencrypt_file():
     with open(output_file, 'r+b') as file:
         data = file.read()
         unencrypted_data = ""
-        temp = ""
         for i in data:
-            temp = chr(i ^ KEY)
             unencrypted_data += chr(i ^ KEY)
     print(unencrypted_data)
 

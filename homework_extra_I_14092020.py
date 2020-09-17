@@ -1,7 +1,7 @@
 # Ctrl+Alt+Click go to definition
 input_file = 'input.txt'
 output_file = 'output.txt'
-KEY = "love is complex"
+KEY = "some passphrase"
 
 
 def key_gen(KEY):
@@ -32,6 +32,7 @@ def unencrypt_file():
 
 
 if __name__ == "__main__":
-    KEY = key_gen(KEY)
+    if not (type(KEY) == int):
+        KEY = key_gen(KEY)
     encrypt_file()
     unencrypt_file()

@@ -13,7 +13,7 @@ def write_output_file(read_file, file_name):
 
 def sorter(some_dict: dict):
     some_dict = dict(
-        sorted(some_dict.items(), key=lambda x: x[1], reverse=True))
+        sorted(some_dict.items(), key=lambda x: x[1], reverse=True))  # if x = x[0] the value is put in key whereas x: x[1] puts value in value in a dict
     return some_dict
 
 
@@ -22,8 +22,9 @@ def read_a_file(file_name):  # counts number of a character in an entire txt fil
         with open(file_name, 'r') as file:
             read_file = file.read()
             char_count = {}
-            for i in read_file.lower():
+            for i in read_file.lower():  # If you add: for c in i --> to loop over per line
                 if(i.isalpha() == True):
+                    # .get returns the value of key and returns 0 if not found
                     char_count[i] = char_count.get(i, 0) + 1
         char_count = dict(sorted(char_count.items()))
         char_count = sorter(char_count)

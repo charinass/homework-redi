@@ -1,0 +1,31 @@
+Tanja 26 F 2530.75 DEV
+
+Henry 29 M 1975 DEV
+
+Alex 32 M 2773.25 TST
+
+Jomy 31 F 3400 MNG
+
+Mona 35 F 2343.57 TST
+
+Kemal 24 M 2223 DEV
+
+Artyom 43 M 2640 TST
+
+Roman 37 M 3625 MNG
+
+Katya 46 F 3826.74 DEV
+
+Esha 23 F 1856.23 TST
+
+Tova 33 F 2631.87 MNG
+
+Rae 26 F 2754.33 TST
+
+Milana 36 F 2623.65 DEV
+
+Rajendra 41 F 3612.55 DEV
+
+Louis 53 M 4300 MNG
+
+Vasiliki 33 F 3132.55 TST

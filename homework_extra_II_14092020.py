@@ -2,6 +2,7 @@ a_list = [1, 3, 5, 7, 9, 15, 20]
 
 
 def find_number(a_number: int):
+    res_index = 0
     for i in a_list:
         if(a_number == i):
             return True, a_list.index(a_number)

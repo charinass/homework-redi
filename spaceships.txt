@@ -1,0 +1,7 @@
+Battlecruiser, 98, 30, 20
+Battleship, 95, 21, 15
+Cruiseship, 87, 24, 19
+Her Majesty's Spaceship, 88, 34, 14
+Heavy Weight Spaceship, 89, 23, 10
+Imperial Spaceship, 86, 38, 12
+Spacecruiser, 99, 22, 10

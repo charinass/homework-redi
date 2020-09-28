@@ -1,0 +1,7 @@
+Titanium armour: +250 hp, +3 armor
+Absorption shield: +50% armor
+Proton torpedos: +25 damage
+Flare engine: +50% damage, +3 armor, +20% hp
+EMP cannon: -50% enemy armor
+Teleporting module: 25% chance to missed attacks
+Molecular mirror: 10% attack reflected to attacker

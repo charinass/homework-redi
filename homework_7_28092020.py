@@ -47,6 +47,7 @@ def lowercase(nameslist):
     1. Given a list of names. Find the total number of names starting with lowercase. Use lambda function. 
     """
     lowercasenames = list(filter(lambda x: x == x.lower(), nameslist))
+    #print(f"No. of lowercase names: {len(lowercasenames)}")
     return lowercasenames
 
 

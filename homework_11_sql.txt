@@ -1,0 +1,119 @@
+CREATE TABLE Persons (
+	person_Id		INTEGER		PRIMARY KEY AUTOINCREMENT,
+	emp_Id			INTEGER,
+	name			TEXT		NOT NULL,
+	age			INTEGER,
+	gender			TEXT,
+	FOREIGN KEY(emp_Id) 	REFERENCES Employees(emp_Id)
+);
+
+CREATE TABLE Departments (
+	dept_Id			INTEGER		PRIMARY KEY AUTOINCREMENT,
+	department		TEXT		NOT NULL
+);
+
+CREATE TABLE Positions (
+	post_Id			INTEGER		PRIMARY KEY AUTOINCREMENT,
+	post_title		TEXT		NOT NULL
+);
+
+CREATE TABLE Salaries (
+	salary_Id		INTEGER		PRIMARY KEY AUTOINCREMENT,
+	employee		INTEGER,
+	new_salary		REAL,
+	old_salary		REAL,
+	date_change		TEXT,
+	percent			REAL,
+	FOREIGN KEY (employee)	REFERENCES Employees(emp_Id)
+);
+
+CREATE TABLE Employees (
+	emp_Id			INTEGER		PRIMARY KEY AUTOINCREMENT,
+	person_Id		INTEGER,
+	salary_Id		INTEGER,
+	department		INTEGER,
+	"position"		INTEGER,
+	FOREIGN KEY(person_Id) 	REFERENCES Persons(person_Id),
+	FOREIGN KEY(salary_Id) 	REFERENCES Salaries(salary_Id),
+	FOREIGN KEY(department)	REFERENCES Departments(dept_Id),
+	FOREIGN KEY("position")	REFERENCES Positions(post_Id)
+);
+
+1. What is the average salary in the company?
+SELECT ROUND(AVG(s.new_salary), 2) AS "company average salary"
+FROM Salaries s 
+
+2. What is the name of the oldest employee? What about the youngest?
+SELECT p.name, MIN(p.age) FROM Persons p
+UNION
+SELECT p.name, MAX(p.age) FROM Persons p;
+
+3. How many employees are occupying the MNG position?
+SELECT d.department, COUNT(e.department) 
+FROM Departments d
+INNER JOIN Employees e ON d.dept_Id = e.department 
+WHERE d.department = 'MNG'
+
+4. What is the Male/Female proportion in the company? (e.g.: 80%/20%)
+SELECT  SUM(p.gender = 'M') * 100 / COUNT(p.gender) AS "male employees (%)",
+	SUM(p.gender = 'F') * 100 / COUNT(p.gender) AS "female employees (%)"
+FROM Persons p 
+INNER JOIN Employees e ON p.emp_Id = e.emp_Id
+
+5. How many employees are there for each of the following age groups: 18-25, 26-35, 36-48, 49-60, 61+?
+SELECT 	SUM(p.age >= 18 AND p.age <= 25) AS "18-25",
+	SUM(p.age >= 26 AND p.age <= 35) AS "26-35",
+	SUM(p.age >= 36 AND p.age <= 48) AS "36-48",
+	SUM(p.age >= 49 AND p.age <= 60) AS "49-60",
+	SUM(p.age >= 61) AS "61 and above"
+FROM Persons p 
+INNER JOIN Employees e ON p.emp_Id = e.emp_Id
+
+6. How many employees are there for each department (position)?
+SELECT 	d.department , COUNT(d.department = "DEV") AS "number of employees", 
+	p.post_title AS "position title"
+FROM Employees e 
+INNER JOIN Departments d ON e.department = d.dept_Id
+INNER JOIN Positions p ON e."position" = p.post_Id 
+GROUP BY e.department
+
+7. Which department (position) requires the most budget (in terms of salary)?
+SELECT 	d.department, AVG(s.new_salary) AS "salary"
+FROM Departments d 
+INNER JOIN Employees e ON d.dept_Id = e.department 
+INNER JOIN Salaries s ON e.salary_Id = s.salary_Id
+GROUP BY d.department
+ORDER BY salary
+LIMIT 1
+
+8. What is the average between the best and worst salary for each department (position)?
+SELECT 	d.department, 
+	MAX(s.new_salary) AS "best salary",
+	MIN(s.new_salary) AS "worst salary",
+	(MAX(s.new_salary) + MIN(s.new_salary)) / 2 AS "average"
+FROM Departments d
+INNER JOIN Employees e ON d.dept_Id = e.department 
+INNER JOIN Salaries s ON e.salary_Id = s.salary_Id
+GROUP BY d.department
+
+9. Who are the two employees with the closest salaries?
+SELECT	p.name, s.new_salary,
+	MIN(ABS(s.new_salary - (SELECT s2.new_salary FROM Salaries s2))) AS "Salary"
+FROM Salaries s
+INNER JOIN Employees e ON s.salary_Id = e.salary_Id 
+INNER JOIN Persons p ON p.emp_Id = e.emp_Id
+WHERE p.name != (SELECT p2.name FROM Persons p2)
+GROUP BY s.new_salary 
+ORDER BY Salary
+LIMIT 2
+
+10. For each department, who is the employee with the salary closest to the average salary of that department (position)?
+SELECT 	p.name, 
+	s.new_salary,  
+	ROUND(AVG(s.new_salary), 2) AS "Average", 
+	ROUND(AVG(s.new_salary) - (SELECT s2.new_salary FROM Salaries s2), 2) AS "Deduct"
+FROM Employees e
+INNER JOIN Departments d ON e.department = d.dept_Id 
+INNER JOIN Salaries s ON e.salary_Id = s.salary_Id 
+INNER JOIN Persons p ON e.emp_Id = p.emp_Id 
+GROUP BY d.department 

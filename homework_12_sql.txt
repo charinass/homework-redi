@@ -1,0 +1,82 @@
+-- 1. Find the list of customer whose salesman gets a commission more than 12%.
+
+SELECT DISTINCT c.cust_name AS "customer", 
+		s.commission AS "commission", 
+		s.name AS "salesman"
+FROM customer c LEFT JOIN salesman s ON c.salesman_id  = s.salesman_id 
+WHERE s.commission > 0.12
+ORDER BY commission 
+
+-- 2. Find the details of a order i.e. order number, order date, amount , which customer gives the order and which salesman works for that customer and how much commission he gets for an order.
+
+SELECT 	o.ord_no AS "order", 
+	o.ord_date AS "date", 
+	o.purch_amt AS "amount", 
+	c.cust_name AS "customer", 
+	s.name AS "salesman",
+	s.commission AS "commission"
+FROM orders o JOIN customer c ON o.customer_id = c.customer_id 
+JOIN salesman s ON o.salesman_id = s.salesman_id 
+
+-- 3.  Make a report with customer name, city, order number, order date, and order amount in ascending order according to the order date to find that either any of the existing customers have placed no order or placed one or more orders.
+
+SELECT 	c.cust_name, 
+	c.city, 
+	o.ord_no, 
+	o.ord_date, 
+	o.purch_amt,
+	COUNT(c.cust_name) AS "orders placed"
+FROM customer c 
+JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY o.ord_date 
+
+-- 4. Write a SQL statement to make a list with order no, purchase amount, customer name and their cities for those orders which order amount between 500 and 2000.
+
+SELECT 	o.ord_no, 
+	o.purch_amt, 
+	c.cust_name, 
+	c.city
+FROM orders o
+JOIN customer c ON o.customer_id = c.customer_id 
+WHERE o.purch_amt >= 500 AND o.purch_amt <= 2000
+
+-- 5. Find the list of customers who appointed a salesman for their jobs who does not live in the same city where their customer lives, and gets a commission is above 12% .
+
+SELECT	c.cust_name AS "customer", 
+	c.city, 
+	s.name, 
+	s.city, 
+	s.commission 
+FROM salesman s JOIN customer c ON s.salesman_id = c.salesman_id 
+WHERE s.city != c.city AND s.commission > 0.12
+
+-- 6. Write a SQL statement to make a list in ascending order for the customer who holds a grade less than 300 and works either through a salesman or by own.
+
+SELECT	c.cust_name AS "customer", 
+	c.grade,
+	s.name AS "salesman"
+FROM customer c JOIN salesman s ON c.salesman_id = s.salesman_id 
+WHERE c.grade < 300
+ORDER BY c.grade
+
+-- 7. Write a SQL statement to make a list in ascending order for the salesmen who works either for one or more customer or not yet join under any of the customers.
+
+SELECT 	c.cust_name AS "customer", 
+	COUNT(s.name) AS "frequency", 
+	s.name AS "salesman" 
+FROM customer c
+JOIN salesman s ON c.salesman_id = s.salesman_id 
+GROUP BY s.name 
+ORDER BY frequency
+
+-- 8. Write a SQL statement to make a list for the salesmen who works either for one or more customer or not yet join under any of the customers who placed either one or more orders or no order to their supplier.
+
+SELECT 	s.name AS "salesman", 
+	COUNT(o.salesman_id) AS "salesman/customer", 
+	c.cust_name AS "customer", 
+	COUNT(o.customer_id) AS "order frequency" 
+FROM salesman s 
+JOIN customer c ON s.salesman_id = c.salesman_id 
+JOIN orders o ON c.customer_id = o.customer_id 
+GROUP BY o.salesman_id 
+ORDER BY o.ord_no 

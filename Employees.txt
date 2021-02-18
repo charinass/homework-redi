@@ -1,31 +1,31 @@
-Tanja 26 F 2530.75 DEV
+Tanja 26 F 2530.75 DEV Developer
 
-Henry 29 M 1975 DEV
+Henry 29 M 1975 DEV Developer
 
-Alex 32 M 2773.25 TST
+Alex 32 M 2773.25 TST Tester
 
-Jomy 31 F 3400 MNG
+Jomy 31 F 3400 MNG Manager
 
-Mona 35 F 2343.57 TST
+Mona 35 F 2343.57 TST Tester
 
-Kemal 24 M 2223 DEV
+Kemal 24 M 2223 DEV Developer
 
-Artyom 43 M 2640 TST
+Artyom 43 M 2640 TST Tester
 
-Roman 37 M 3625 MNG
+Roman 37 M 3625 MNG Manager
 
-Katya 46 F 3826.74 DEV
+Katya 46 F 3826.74 DEV Developer
 
-Esha 23 F 1856.23 TST
+Esha 23 F 1856.23 TST Tester
 
-Tova 33 F 2631.87 MNG
+Tova 33 F 2631.87 MNG Manager
 
-Rae 26 F 2754.33 TST
+Rae 26 F 2754.33 TST Tester
 
-Milana 36 F 2623.65 DEV
+Milana 36 F 2623.65 DEV Developer
 
-Rajendra 41 F 3612.55 DEV
+Rajendra 41 F 3612.55 DEV Developer
 
-Louis 53 M 4300 MNG
+Louis 53 M 4300 MNG Manager
 
-Vasiliki 33 F 3132.55 TST
+Vasiliki 33 F 3132.55 TST Tester

@@ -1,0 +1,80 @@
+CREATE TABLE "Books" (
+	"Title" TEXT NOT NULL,
+	"Author" TEXT,
+	"Publisher" TEXT,
+	"Description" TEXT NOT NULL,
+	"Edition" INTEGER,
+	"Year" INTEGER NOT NULL,
+	"Quantity" INTEGER NOT NULL,
+	"Price" REAL
+);
+
+--1
+
+SELECT Title, Description FROM Books
+WHERE Author = "J.K. Rowling"
+
+
+--2
+
+SELECT Title, Publisher, Edition FROM Books
+WHERE [Year] <= 2020 AND [Year] >= 2010 
+
+
+--3
+
+SELECT * FROM Books
+WHERE Quantity = 0
+
+
+--4
+
+SELECT * FROM Books
+WHERE (Quantity > 0 AND Price = "")
+
+
+--5
+
+SELECT * FROM Books
+WHERE Description LIKE "%Cooking%" 
+	OR Description LIKE "%Food%"
+	AND Quantity > 0
+	AND (Author = "Gordon Ramsay" OR Author = "Jamie Oliver")
+
+
+--6
+
+SELECT DISTINCT Author FROM Books
+WHERE Author LIKE 'a%' OR 
+	Author LIKE 'e%' 
+	OR Author LIKE 'i%' 
+	OR Author LIKE 'o%' 
+	OR Author LIKE 'u%'
+
+
+--7
+
+SELECT Title FROM Books
+WHERE Title LIKE '%a%a%a%'
+
+
+--8
+
+SELECT Title FROM Books
+WHERE Title LIKE '____'
+
+
+--9
+
+SELECT Title, Author FROM Books
+WHERE Title = Author
+
+
+--10
+
+SELECT * FROM Books
+WHERE Quantity > 0
+	AND Author NOT LIKE '%a'
+	AND Description LIKE ""
+	OR Description LIKE '_____%'
+
